@@ -1,13 +1,17 @@
-import { useContext } from 'react'
-import { ProdutosContext } from "../contexts/ProdutosContext.jsx"
+import { useProdutosContext } from "../contexts/ProdutosContext.jsx"
 
 export function Categorias() {
-    const { enviarProdutos } = useContext(ProdutosContext)
+    const { listarProdutos } = useProdutosContext()
     
+    function onOption(e) {
+        const tipo = e.target.dataset.tipo
+        listarProdutos(tipo)
+    }
+
     return (
         <>
-            <button onClick={enviarProdutos}>Opção 1</button>
-            <button onClick={enviarProdutos}>Opção 2</button>
+            <button onClick={onOption} data-tipo="1">Opção 1</button>
+            <button onClick={onOption} data-tipo="2">Opção 2</button>
         </>
     )
 }

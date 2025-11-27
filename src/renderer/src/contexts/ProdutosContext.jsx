@@ -1,18 +1,26 @@
-import  { createContext, useState } from "react"
+import { createContext, useContext, useState } from "react"
+import { getBurguers } from "../services/api"
 
-export const ProdutosContext = createContext()
+const ProdutosContext = createContext()
 
-export const ProdutosProvider = ({ children }) => {
-    const [produtos, setProdutos] = useState("Nenhum produto")
+    const products = getBurguers()
+
+    export const useProdutosContext = () => useContext(ProdutosContext)
+
+    export const ProdutosProvider = ({ children }) => {
+        const [produtos, setProdutos] = useState([])
 
     // outra função a ser compartilhada
 
-    function enviarProdutos(products) {
-        setProdutos("Novos produtos enviados")
+    const listarProdutos = (tipo) => {
+        setProdutos([])
+        products.map((product) => {
+            product.tipo == tipo && setProdutos(prev => [...prev, product])
+        })
     }
 
     return (
-        <ProdutosContext.Provider value={{ produtos, enviarProdutos }}>
+        <ProdutosContext.Provider value={{ produtos, listarProdutos }}>
             {children}
         </ProdutosContext.Provider>
     )

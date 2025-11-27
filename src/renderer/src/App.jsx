@@ -1,7 +1,5 @@
 import { Categorias } from './components/Categorias'
 import { Listagem } from './components/Listagem'
-import { Hamburguer1 } from './pages/Hamburguer1'
-import { Hamburguer2 } from './pages/Hamburguer2'
 import { getBurguers } from './services/api'
 
 function App() {
@@ -13,7 +11,6 @@ function App() {
         <>
             <Categorias />
             <Listagem />
-            
         </>
     )
 }

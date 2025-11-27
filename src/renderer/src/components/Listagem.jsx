@@ -1,13 +1,26 @@
-import { useContext } from "react"
-import { ProdutosContext } from "../contexts/ProdutosContext"
+import { useProdutosContext } from "../contexts/ProdutosContext"
 
 export function Listagem() {
-    
-    const { produtos } = useContext(ProdutosContext)
-    
+
+    const { produtos } = useProdutosContext()
+
+    console.log(produtos)
+
     return (
-        <>
-            <div>{produtos}</div>
-        </>
+            <ul>
+                {produtos.map(produto => 
+                    <>
+                        <li key={produto.id}>
+                            <ul>
+                                <li>{produto.nome}</li>
+                                <li>{produto.valor}</li>
+                                <li>{produto.loja}</li>
+                            </ul>
+                        </li>
+                        <br></br>
+                    </>
+                    
+                )}
+            </ul>
     )
 }
