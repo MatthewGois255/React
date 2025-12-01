@@ -1,10 +1,14 @@
 import { useProdutosContext } from "../contexts/ProdutosContext"
+import Produtos from "../../../Models/Produtos"
 
 export function Listagem() {
 
     const { produtos } = useProdutosContext()
 
-    console.log(produtos)
+    const prod = new Produtos()
+    prod.listarTodosProdutos()
+
+    //console.log(produtos)
 
     return (
             <ul>
